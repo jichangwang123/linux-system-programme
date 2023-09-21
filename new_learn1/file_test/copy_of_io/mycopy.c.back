@@ -1,0 +1,43 @@
+/**
+* File Name: mycopy.c
+* Auther: Jichang
+* Create Time: 2023年09月20日 星期三 09时30分05秒
+*/
+#include<stdio.h>
+#include<string.h>
+#include<fcntl.h>
+#include<unistd.h>
+#include<stdlib.h>
+
+int main(int argc, char *argv[]) {
+	char buf[1024];
+	int n = 0;
+
+	int fd1 = open(argv[1], O_RDONLY);	// read
+	if(fd1 == -1) {
+		perror("open argv1 falid.\n");
+		exit(1); //打开失败退出
+	}
+	
+	//创建可读可写，不存在创建，同时替换原来的文件
+	int fd2 = open(argv[2], O_RDWR | O_CREAT | O_TRUNC, 0664);
+	if(fd2 == -1) {
+		perror("open argv2 falid.\n");
+		exit(1); //打开失败退出
+	}
+	while((n = read(fd1, buf, 1024)) != 0 ) {
+		if(n < 0) {	
+			perror("read falid.\n"); //读取失败
+			break;
+		}
+		write(fd2, buf, n);
+	}
+
+
+	close(fd1);
+	close(fd2);
+
+	return 0;
+}
+
+

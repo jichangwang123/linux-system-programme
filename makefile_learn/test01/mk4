@@ -1,0 +1,17 @@
+CC = gcc
+CFLAGS = -I.
+OBJS = t.o mysum.o
+AS = as
+DEPS = type.h
+
+.s.o:
+	$(AS) -o $< -o $@
+
+.c.o:
+	$(CC) -c $< -o $@
+
+%.o: $.c $(DEPS)
+	$(CC) -c -o $@ $<
+
+myt: $(OBJS)
+		$(CC) $(CFLAGS) -o $@ $^

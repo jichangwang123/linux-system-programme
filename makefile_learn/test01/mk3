@@ -1,0 +1,26 @@
+CC = gcc
+CFLAGS = -Wall
+OBJS = t.o mysum.o
+INCLUDE = -Ipath
+
+all: myt install
+myt: t.o mysum.o
+	$(CC) $(CFLAGS) -o myt $(OBJS) $(INCLUDE)
+
+t.o:	t.c type.h
+	gcc -c t.c
+
+mysum.o: mysum.c type.h
+	gcc -c mysum.c
+
+install: myt
+	echo install myt to /usr/local/bin
+	sudo mv myt /usr/local/bin/
+
+run:	install
+	echo run executable image myt
+	myt || /bin/true
+
+clean:
+	rm -f *.o 2> /dev/null
+	sudo rm -f /usr/local/bin/myt
