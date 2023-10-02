@@ -25,11 +25,13 @@ int main(int argc, char *argv[])
 	}
 	else if(pid == 0)
 	{
-		printf("child is created.\n");
+		/* 打印父子pid */
+		printf("child is created, pid=%d, parentPid=%d\n", getpid(), getppid());
 	}
 	else if(pid > 0)
 	{
-		printf("parrnt peocess: mychild is %d.\n", pid);
+		/* 打印父子以及自己的pid */
+		printf("parrnt peocess: mychild is %d, mypid=%d, my parentpid=%d\n", pid, getpid(), getppid());
 	}
 	printf("===================end.\n");
 
