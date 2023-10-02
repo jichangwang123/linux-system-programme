@@ -20,8 +20,10 @@ int main(int argc, char *argv[])
 		}
 	}
 	if(i == 5) {
-		printf("I'm parent.\n'");
+		sleep(5);
+		printf("I'm parent.\n");
 	} else {
+		sleep(i);
 		printf("I'm %dth child.\n", i+1);
 	}
 
