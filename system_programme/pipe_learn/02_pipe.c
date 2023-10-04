@@ -32,11 +32,14 @@ int main(int argc, char *argv[]) {
 	if(pid > 0) {
 		close(fd[0]); //关闭读端
 		sleep(3);
-		write(fd[1], str, strlen(str));  //写数据
+
+		//write(fd[1], str, strlen(str));  //写数据
+		
 		close(fd[1]);
 	} else if(pid == 0) {
 		close(fd[1]); //子进程关闭写端
 		ret = read(fd[0], buf, sizeof(buf));
+		printf("child read ret = %d\n", ret);
 		write(STDOUT_FILENO, buf, ret);
 		close(fd[0]);
 	}
