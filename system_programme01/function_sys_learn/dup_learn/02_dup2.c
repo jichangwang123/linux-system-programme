@@ -1,5 +1,5 @@
 /**
-* File Name: test_dup2.c
+* File Name: 02_dup2.c
 * Auther: Jichang
 * Create Time: 2023年10月01日 星期日 09时57分05秒
 */

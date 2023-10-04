@@ -1,5 +1,5 @@
 /**
-* File Name: test_dup.c
+* File Name: 01_dup.c
 * Auther: Jichang
 * Create Time: 2023年10月01日 星期日 09时15分35秒
 * 系统函数学习: dup

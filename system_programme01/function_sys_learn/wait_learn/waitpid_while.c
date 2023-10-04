@@ -22,9 +22,23 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	if(i == 5) {
-		while((wpid = waitpid(-1, NULL, 0))) {
+		/* 使用阻塞方式回收子进程 */
+		//while((wpid = waitpid(-1, NULL, 0))) {
+		//	printf("wait child %d\n", wpid);
+		//}
+
+
+		while((wpid = waitpid(-1, NULL, WNOHANG)) != -1) {
+			if(wpid > 0) {
+				printf("wait child:%d\n", wpid);
+			} else if(wpid == 0) {
+				sleep(1);
+				continue;
+			}
+			sleep(1);
 			printf("wait child %d\n", wpid);
 		}
+		
 	} else {
 		sleep(i);
 		printf("I am %dth child, pid:%d\n", i+1, getpid());
